@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Website to PDF",
+  "version": "1.0.0",
+  "description": "Scan links on a page, select the ones you want, and generate a single PDF with full layout, images, and text.",
+  "permissions": ["activeTab", "tabs", "debugger", "downloads", "scripting", "offscreen", "webNavigation"],
+  "host_permissions": ["<all_urls>", "file:///*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Website to PDF",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}

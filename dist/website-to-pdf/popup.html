@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website to PDF</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📄 Website to PDF</h1>
+      <p class="subtitle">Select pages to include in your PDF</p>
+    </header>
+
+    <div class="toolbar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search links..." autocomplete="off">
+      </div>
+      <div class="actions">
+        <button id="selectAllBtn" class="btn btn-small" title="Select all links">Select All</button>
+        <button id="deselectAllBtn" class="btn btn-small" title="Deselect all links">Deselect All</button>
+      </div>
+    </div>
+
+    <div class="upload-section">
+      <button id="uploadBtn" class="btn btn-small btn-upload" title="Upload a text file with URLs (one per line)">
+        📂 Upload URL List
+      </button>
+      <input type="file" id="fileInput" accept=".txt,.csv,.urls,.html" style="display:none">
+      <span id="uploadStatus" class="upload-status"></span>
+    </div>
+
+    <div class="css-section">
+      <div class="css-input-row">
+        <input type="text" id="cssClassInput" placeholder="Enter CSS class (e.g., .button-primary)" autocomplete="off">
+        <button id="scanCssBtn" class="btn btn-small btn-css" title="Find elements with this CSS class and extract their links">
+          🔍 Scan
+        </button>
+      </div>
+      <span id="cssStatus" class="css-status"></span>
+    </div>
+
+    <div id="status" class="status">
+      <div class="spinner"></div>
+      <span id="statusText">Scanning page for links...</span>
+    </div>
+
+    <div id="linkList" class="link-list"></div>
+
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <p>No links found on this page.</p>
+      <p class="hint">Make sure you're on a regular web page (http/https).</p>
+    </div>
+
+    <footer>
+      <div class="summary">
+        <span id="selectedCount">0</span> / <span id="totalCount">0</span> selected
+      </div>
+      <button id="generateBtn" class="btn btn-primary" disabled>
+        <span class="btn-icon">📥</span>
+        <span class="btn-text">Generate PDF</span>
+      </button>
+    </footer>
+
+    <div class="support-section">
+      <p class="support-message">☕ If you want to support my future free tools and apps, please feel free to buy me a coffee!</p>
+      <a class="kofi-button" href="https://ko-fi.com/H1U725AVCQ" target="_blank" rel="noopener noreferrer">
+        <img class="kofi-icon" src="icons/coffee-avatar.jpg" alt="Buy me a Coffee">
+        <span>Buy me a Coffee</span>
+      </a>
+    </div>
+
+    <div id="progressOverlay" class="progress-overlay" style="display: none;">
+      <div class="progress-card">
+        <h2>Generating PDF...</h2>
+        <div class="progress-bar-container">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+        <p id="progressText">Preparing...</p>
+        <p id="progressDetail" class="progress-detail"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
